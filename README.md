@@ -1,3 +1,3 @@
 Readme
 
-This repo contains dot files for my personal linux installation
+This repo contains dotfiles for my personal linux installation
