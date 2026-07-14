@@ -1,0 +1,116 @@
+[colors]
+background = #1e1e2e
+background-alt = #313244
+foreground = #cdd6f4
+primary = #89b4fa
+secondary = #f38ba8
+alert = #f38ba8
+disabled = #585b70
+
+[bar/main]
+width = 100%
+height = 28
+radius = 0
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+border-size = 0
+
+padding-left = 2
+padding-right = 2
+
+module-margin = 2
+
+font-0 = JetBrainsMono Nerd Font:size=10;2
+
+modules-left = workspaces
+modules-center = player
+modules-right = volume date time tray
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+enable-ipc = true
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; WORKSPACES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/workspaces]
+type = internal/xworkspaces
+
+label-active = %name%
+label-active-background = ${colors.primary}
+label-active-foreground = #000000
+label-active-padding = 2
+
+label-occupied = %name%
+label-occupied-padding = 2
+
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %name%
+label-empty-foreground = ${colors.disabled}
+label-empty-padding = 2
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; MEDIA PLAYER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/player]
+type = custom/script
+exec = playerctl metadata --format "  {{artist}} - {{title}}" 2>/dev/null
+interval = 2
+
+format-foreground = ${colors.secondary}
+
+click-left = playerctl play-pause
+click-right = playerctl next
+click-middle = playerctl previous
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; VOLUME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/volume]
+type = internal/pulseaudio
+
+format-volume = <label-volume>
+label-volume =  %percentage%%
+
+format-muted = <label-muted>
+label-muted =  muted
+label-muted-foreground = ${colors.disabled}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; DATE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/date]
+type = internal/date
+interval = 60
+
+date = %a %d %b
+label =  %date%
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; TIME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/time]
+type = internal/date
+interval = 1
+
+time = %H:%M:%S
+label =  %time%
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; SYSTEM TRAY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/tray]
+type = internal/tray
