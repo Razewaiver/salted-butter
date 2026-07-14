@@ -1,3 +1,3 @@
 Readme
 
-This repo contains dot files for i3 and other applications.
+This repo contains dot files for my personal linux installation
