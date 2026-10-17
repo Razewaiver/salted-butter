@@ -1,0 +1,6 @@
+configuration {
+    show-icons: true;
+    modi: "drun,run";
+}
+
+@theme "catppuccin-default"
